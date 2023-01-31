@@ -14,6 +14,17 @@ CrudRouter.get("/",async(req,res)=>{
    }
 })
 
+CrudRouter.get("/get/:id",async(req,res)=>{
+    const userId = req.params.id;
+ try{
+         const user = await CrudModel.findById({_id:userId});
+         res.status(200).send(user)
+    }
+    catch(err){
+        res.status(500).send({message:err.message})
+    }
+})
+
 CrudRouter.post("/post",async(req,res)=>{
     // const {name,age,city} = req.body;
     try{
